@@ -1,12 +1,12 @@
-import Incorporate from "./components/Incorporate";
+import { FunctionComponent } from "react";
+import MainContainer from "./container/main-container";
 
-function App() {
+const App: FunctionComponent = () => {
   return (
-    <>
-      <div className="flex flex-col items-center bg-gray-100 min-h-screen">
-        <Incorporate />
-      </div>
-    </>
+      <MainContainer 
+        width="100%"
+        height={500}
+      />
   );
 }
 

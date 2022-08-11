@@ -1,15 +1,15 @@
-import Card from "../Card/index";
-import List from "../List/index";
+import Card from "../../components/card";
+import List from "../../components/list";
 import {
   DragDropContext,
   Draggable,
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
-import { ChangeEvent, useEffect, useState } from "react";
-import { CloseSquareFilled } from "@ant-design/icons";
+import { FunctionComponent, useState } from "react";
+import { MainContainerProps } from "../../model";
 
-const Incorporate = () => {
+const MainContainer: FunctionComponent<MainContainerProps> = () => {
   const itemsNormal = {
     available: [
       {
@@ -190,4 +190,4 @@ const Incorporate = () => {
   );
 };
 
-export default Incorporate;
+export default MainContainer;
