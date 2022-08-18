@@ -1,0 +1,35 @@
+.drag_box {
+    border: 1px solid black;
+}
+.drag_item {
+    position: relative;
+    padding-left: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    overflow: hidden;
+    user-select: none;
+}
+.drag_item::before {
+    content: "";
+    background-image: url("/images/1476321-200.png");
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #efefef;
+    padding: 0px;
+}
+.drag_item_container {
+    position: relative;
+}
+.drag_item_container input {
+    position: absolute;
+    opacity: 0;
+}
+.drag_item_container input:checked ~ .drag_item_content .drag_item {
+    border-color: blue; 
+}

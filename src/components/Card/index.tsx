@@ -1,22 +1,17 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { CardProps } from "../../model";
 
-type Props = {
-  children?: React.ReactNode;
-  data: {
-    id: number;
-    uuid: string;
-  };
-};
+const Card: FunctionComponent<CardProps> = (props) => {
 
-const Card = ({ data }: Props) => {
+  const itemClicked = (): void => {
+    document.getElementById(props.inputId)?.click()
+  }
+
   return (
-    <div className="shadow-lg flex w-full cursor-pointer">
-      <div className="rounded-l-md p-5 w-36 bg-blue-200">
-      </div>
-
-      <main className="py-7 px-5 rounded-r-md w-full bg-white">
+    <div className="flex w-full cursor-pointer drag_item_content" onClick={itemClicked}>
+      <main className="py-5 px-5 w-full bg-white drag_item">
         <span className="flex flex-row justify-between">
-          <h4 className="uppercase font-normal">{data.id}</h4>
+          <h4 className="uppercase font-normal">{props.data.id}</h4>
         </span>
       </main>
     </div>
