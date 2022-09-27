@@ -3,8 +3,7 @@ import List from "./components/list";
 import {
   DragDropContext,
   Draggable,
-  DraggableProvided,
-  DraggableStateSnapshot,
+  DraggableProvided
 } from "react-beautiful-dnd";
 import { FunctionComponent, useState } from "react";
 import { MainContainerProps } from "./model";
@@ -50,7 +49,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
   };
 
   const [items, setItems] = useState(itemsNormal);
-  const [selectItems, setSelectItems] = useState<any[]>([]);
+  const [selectItems, setSelectItems] = useState<{items: any[], selectedArray: string}>({items: [], selectedArray: ''});
 
   const removeFromList = (list: any, index: any) => {
     const result = Array.from(list);
@@ -58,25 +57,29 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
     return [removed, result];
   };
 
-  const selectFromList = (event: any, item: any, index: number) => {
+  const selectFromList = (event: any, item: any, index: number, draggedArray: string) => {
+    let currentSelectedItems = {...selectItems}
+    if(selectItems.selectedArray !== draggedArray) {
+      setSelectItems({items: [], selectedArray: draggedArray});
+      currentSelectedItems = {items: [], selectedArray: draggedArray}
+    }
+   
     let result = []
     if (event.target.checked){
       let data = [];
       data.push({...item, sourceIndex: index});
-      result = [...selectItems, ...data]
+      result = [...currentSelectedItems.items, ...data]
     } else {
-      let data = [...selectItems];
-      var index = data.findIndex(el => el.id === item.id)        
-      data.splice(index, 1)
+      let data = [...currentSelectedItems.items];
+      var itemIndex = data.findIndex(el => el.id === item.id)        
+      data.splice(itemIndex, 1)
       result = [...data]
     } 
     result.sort((a, b) => {
       return a.sourceIndex - b.sourceIndex;
     });
-    setSelectItems(result)
+    setSelectItems({items: result, selectedArray: draggedArray})
   }
-
-  console.log(selectItems)
 
   const addToList = (list: any, index: any, element: any) => {
     const result = Array.from(list);
@@ -89,8 +92,8 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
       return;
     }
     const listCopy: any = { ...items };
-    if(selectItems.findIndex(d=> d.sourceIndex == result.source.index) != -1) {
-      selectItems.map((el, i)=> {
+    if((selectItems.items.findIndex(d=> d.sourceIndex == result.source.index) !== -1) && selectItems.selectedArray === result.source.droppableId) {
+      selectItems.items.map((el, i) => {
         const sourceList = listCopy[result.source.droppableId];
         let sourceIndex = el.sourceIndex - (i);
         const [removedElement, newSourceList] = removeFromList(
@@ -106,7 +109,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
           removedElement
         );  
       })
-      setSelectItems([])
+      setSelectItems({items: [], selectedArray: ''})
     }
     else { 
       const sourceList = listCopy[result.source.droppableId];
@@ -126,7 +129,6 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
     setItems(listCopy);
   };
 
-  console.log('Items',items)
   return (
     <>
       <DragDropContext onDragEnd={(e) => onDragEnd(e)}>
@@ -135,8 +137,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
                 {items.available.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id + ""} index={index}>
                     {(
-                      provided: DraggableProvided | any,
-                      snapshot: DraggableStateSnapshot
+                      provided: DraggableProvided | any
                     ) => (
                       <div>
                         <div
@@ -145,7 +146,12 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
                           {...provided.dragHandleProps}
                           className="drag_item_container"
                         >
-                          <input id={`available_${index}`}  type={"checkbox"}  checked={selectItems.findIndex((e)=>e.id === item.id) != -1} onChange={(event) => selectFromList(event, item, index)} />
+                          <input 
+                            id={`available_${index}`}  
+                            type={"checkbox"}  
+                            checked={selectItems.selectedArray === 'available' && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
+                            onChange={(event) => selectFromList(event, item, index, 'available')} 
+                          />
                           <Card data={item} inputId={`available_${index}`} />
                         </div>
                       </div>
@@ -156,12 +162,19 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
               <List title="" onDragEnd={onDragEnd} name="assigned">
                 {items.assigned.map((item, index) => (
                   <Draggable draggableId={item.uuid} index={index} key={item.id}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        className="drag_item_container"
                       >
+                        <input 
+                          id={`assigned_${index}`}  
+                          type={"checkbox"} 
+                          checked={selectItems.selectedArray === 'assigned' && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
+                          onChange={(event) => selectFromList(event, item, index, 'assigned')} 
+                        />
                         <Card data={item} inputId={`assigned_${index}`} />
                       </div>
                     )}
@@ -171,14 +184,20 @@ const MainContainer: FunctionComponent<MainContainerProps> = () => {
               <List title="" onDragEnd={onDragEnd} name="thirdBox">
                 {items.thirdBox?.map((item, index) => (
                   <Draggable draggableId={item.uuid} index={index} key={item.id}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                      >
+                        className="drag_item_container"
+                      >                         
+                        <input 
+                          id={`thirdBox_${index}`} 
+                          type={"checkbox"} 
+                          checked={selectItems.selectedArray === 'thirdBox' && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
+                          onChange={(event) => selectFromList(event, item, index, 'thirdBox')} 
+                        />
                         <Card data={item} inputId={`thirdBox_${index}`}/>
-
                       </div>
                     )}
                   </Draggable>
