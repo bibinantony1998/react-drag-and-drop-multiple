@@ -1,7 +1,9 @@
 export interface MainContainerProps {
     width: string;
     height: number | string;
-    data: any[]
+    data: any[];
+    multiple?: boolean;
+    draggerImg?: boolean;
 }
 export interface CardProps {
     children?: React.ReactNode;
@@ -9,5 +11,6 @@ export interface CardProps {
         id: number;
         uuid: string;
     };
-    inputId: string
+    inputId: string;
+    draggerImg?: boolean;
 }

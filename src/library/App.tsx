@@ -7,6 +7,7 @@ import {
 } from "react-beautiful-dnd";
 import { FunctionComponent, useState } from "react";
 import { MainContainerProps } from "./model";
+import "./style.css";
 
 const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
   const [items, setItems] = useState(props.data);
@@ -103,10 +104,14 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
       setItems(listCopy);
   };
 
+  const setImage = (e: any) => {
+    e.dataTransfer.setDragImage(<img src="https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png" />, 0, 0)
+  }
+
   return (
-    <>
+    <div style={{width: props.width, height: props.height}}>
       <DragDropContext onDragEnd={(e) => onDragEnd(e)}>
-          <div className="flex p-12">
+          <div className="d-flex h-100 p-2">
               {items.map(el=> {
                 return (
                   <List title="" onDragEnd={(e) => onDragEnd(e)} name={el.name}>
@@ -123,12 +128,13 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
                               className="drag_item_container"
                             >
                               <input 
+                                disabled={!props.multiple}
                                 id={`${el.name}_${index}`}  
                                 type={"checkbox"}  
                                 checked={selectItems.selectedArray === el.name && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
                                 onChange={(event) => selectFromList(event, item, index, el.name)} 
                               />
-                              <Card data={item} inputId={`${el.name}_${index}`} />
+                              <Card draggerImg={props.draggerImg} data={item} inputId={`${el.name}_${index}`} />
                             </div>
                           </div>
                         )}
@@ -136,55 +142,10 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
                     ))}
                   </List>
                   )
-              })}
-              
-              {/* <List title="" onDragEnd={onDragEnd} name="assigned">
-                {items.assigned.map((item, index) => (
-                  <Draggable draggableId={item.uuid} index={index} key={item.id}>
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="drag_item_container"
-                      >
-                        <input 
-                          id={`assigned_${index}`}  
-                          type={"checkbox"} 
-                          checked={selectItems.selectedArray === 'assigned' && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
-                          onChange={(event) => selectFromList(event, item, index, 'assigned')} 
-                        />
-                        <Card data={item} inputId={`assigned_${index}`} />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </List>
-              <List title="" onDragEnd={onDragEnd} name="thirdBox">
-                {items.thirdBox?.map((item, index) => (
-                  <Draggable draggableId={item.uuid} index={index} key={item.id}>
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="drag_item_container"
-                      >                         
-                        <input 
-                          id={`thirdBox_${index}`} 
-                          type={"checkbox"} 
-                          checked={selectItems.selectedArray === 'thirdBox' && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
-                          onChange={(event) => selectFromList(event, item, index, 'thirdBox')} 
-                        />
-                        <Card data={item} inputId={`thirdBox_${index}`}/>
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              </List> */}
+              })} 
           </div>
       </DragDropContext>
-    </>
+    </div>
   );
 };
 

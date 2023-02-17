@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import "tailwindcss/tailwind.css";
-import "./style.css";
+import App from "./library/App";
+import "./demo.css";
 
 const itemsNormal = [
   {
@@ -52,7 +51,13 @@ const itemsNormal = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App width="100%" height={500} data={itemsNormal} />
+    <App 
+      width="100%" 
+      height={"100%"} 
+      data={itemsNormal} 
+      multiple 
+      draggerImg 
+    />
   </React.StrictMode>,
   document.getElementById("root")
 );

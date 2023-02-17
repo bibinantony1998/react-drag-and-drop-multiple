@@ -8,10 +8,10 @@ const Card: FunctionComponent<CardProps> = (props) => {
   }
 
   return (
-    <div className="flex w-full cursor-pointer drag_item_content" onClick={itemClicked}>
-      <main className="py-5 px-5 w-full bg-white drag_item">
-        <span className="flex flex-row justify-between">
-          <h4 className="uppercase font-normal">{props.data.id}</h4>
+    <div className="cursor-pointer drag_item_content" onClick={itemClicked}>
+      <main className={`drag_item ${props.draggerImg ? "drag_item_drag_img" : ""}`}>
+        <span className="">
+          <div>{props.data.id}</div>
         </span>
       </main>
     </div>
