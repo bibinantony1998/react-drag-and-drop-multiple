@@ -110,7 +110,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
           <div className="d-flex h-100 p-2">
               {items.map(el=> {
                 return (
-                  <List title={props.title ? el.name : ""} onDragEnd={(e) => onDragEnd(e)} id={el.id}>
+                  <List centerTitle={props.centerTitle} title={props.title ? el.name : ""} onDragEnd={(e) => onDragEnd(e)} id={el.id}>
                     {el.data.map((item: any, index: number) => (
                       <Draggable key={item.id} draggableId={item.id + ""} index={index}>
                         {(

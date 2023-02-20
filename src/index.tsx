@@ -6,47 +6,47 @@ import "./demo.css";
 const itemsNormal = [
   {
     id: 1,
-    name: "available",
+    name: "Drag drop 1",
     data: [
       {
         id: 1,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a4477"
+        value: "Test 1"
       },
       {
         id: 2,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a448"
+        value: "Test 2"
       },
       {
         id: 3,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a449"
+        value: "Test 3"
       },
     ]
   },
   {
     id: 2,
-    name: "assigned",
+    name: "Drag drop 2",
     data: [
       {
         id: 5,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a450"
+        value: "Test 4"
       },
       {
         id: 6,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a451"
+        value: "Test 5"
       },
     ]
   },
   {
     id: 3,
-    name: "thirdBox",
+    name: "Drag drop 3",
     data: [
       {
         id: 7,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a452"
+        value: "Test 6"
       },
       {
         id: 8,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a453"
+        value: "Test 7"
       },
     ]
   },

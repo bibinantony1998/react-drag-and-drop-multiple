@@ -72,6 +72,7 @@ const App = () => (
       data={dragData} 
       multiple 
       draggerImg 
+      title
     />
 );
 

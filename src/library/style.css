@@ -12,6 +12,7 @@
 .dragger_title {
     border-bottom: 1px solid black;
     padding: 1rem 1.25rem;
+    user-select: none;
 }
 .drag_box_on_drag_tittle {
     height: calc(100% - 52px);
@@ -72,4 +73,7 @@
 }
 .p-2 {
     padding: 0.5rem;
+}
+.center_title {
+    text-align: center;
 }

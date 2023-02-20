@@ -5,12 +5,13 @@ export interface MainContainerProps {
     multiple?: boolean;
     draggerImg?: boolean;
     title?: boolean;
+    centerTitle?: boolean;
 }
 export interface CardProps {
     children?: React.ReactNode;
     data: {
         id: number;
-        uuid: string;
+        value: string;
     };
     inputId: string;
     draggerImg?: boolean;

@@ -11,7 +11,7 @@ const Card: FunctionComponent<CardProps> = (props) => {
     <div className="cursor-pointer drag_item_content" onClick={itemClicked}>
       <main className={`drag_item ${props.draggerImg ? "drag_item_drag_img" : ""}`}>
         <span className="">
-          <div>{props.data.id}</div>
+          <div>{props.data.value}</div>
         </span>
       </main>
     </div>
