@@ -4,6 +4,7 @@ export interface MainContainerProps {
     data: any[];
     multiple?: boolean;
     draggerImg?: boolean;
+    title?: boolean;
 }
 export interface CardProps {
     children?: React.ReactNode;

@@ -56,7 +56,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
       const listCopy: any[] = [...items];
       if((selectItems.items.findIndex(d=> d.sourceIndex == result.source.index) !== -1) && selectItems.selectedArray === result.source.droppableId) {
           selectItems.items.map((el, i) => {
-            let sourceId = listCopy.findIndex(el => el.name === result.source.droppableId);
+            let sourceId = listCopy.findIndex(el => el.id === result.source.droppableId);
             if(sourceId !== -1) {
                 const sourceList = listCopy[sourceId].data;
                 let sourceIndex = el.sourceIndex - (i);
@@ -66,7 +66,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
                 );
                 listCopy[sourceId].data = newSourceList;
             
-                let destinationIndex = listCopy.findIndex(el => el.name === result.destination.droppableId);
+                let destinationIndex = listCopy.findIndex(el => el.id === result.destination.droppableId);
                 if(destinationIndex !== -1) {
                     const destinationList = listCopy[destinationIndex].data;
                     listCopy[destinationIndex].data = addToList(
@@ -80,7 +80,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
           setSelectItems({items: [], selectedArray: ''})
       }
       else { 
-          let sourceId = listCopy.findIndex(el => el.name === result.source.droppableId);
+          let sourceId = listCopy.findIndex(el => el.id === result.source.droppableId);
           const sourceList = listCopy[sourceId].data;
           if(sourceId !== -1) {
               const [removedElement, newSourceList] = removeFromList(
@@ -90,7 +90,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
 
               listCopy[sourceId].data = newSourceList;
 
-              let destinationIndex = listCopy.findIndex(el => el.name === result.destination.droppableId);
+              let destinationIndex = listCopy.findIndex(el => el.id === result.destination.droppableId);
               if(destinationIndex !== -1) {
                   const destinationList = listCopy[destinationIndex].data;
                   listCopy[destinationIndex].data = addToList(
@@ -104,17 +104,13 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
       setItems(listCopy);
   };
 
-  const setImage = (e: any) => {
-    e.dataTransfer.setDragImage(<img src="https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png" />, 0, 0)
-  }
-
   return (
     <div style={{width: props.width, height: props.height}}>
       <DragDropContext onDragEnd={(e) => onDragEnd(e)}>
           <div className="d-flex h-100 p-2">
               {items.map(el=> {
                 return (
-                  <List title="" onDragEnd={(e) => onDragEnd(e)} name={el.name}>
+                  <List title={props.title ? el.name : ""} onDragEnd={(e) => onDragEnd(e)} id={el.id}>
                     {el.data.map((item: any, index: number) => (
                       <Draggable key={item.id} draggableId={item.id + ""} index={index}>
                         {(
@@ -129,12 +125,12 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
                             >
                               <input 
                                 disabled={!props.multiple}
-                                id={`${el.name}_${index}`}  
+                                id={`${el.id}_${index}`}  
                                 type={"checkbox"}  
-                                checked={selectItems.selectedArray === el.name && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
-                                onChange={(event) => selectFromList(event, item, index, el.name)} 
+                                checked={selectItems.selectedArray === el.id && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
+                                onChange={(event) => selectFromList(event, item, index, el.id)} 
                               />
-                              <Card draggerImg={props.draggerImg} data={item} inputId={`${el.name}_${index}`} />
+                              <Card draggerImg={props.draggerImg} data={item} inputId={`${el.id}_${index}`} />
                             </div>
                           </div>
                         )}

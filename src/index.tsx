@@ -5,6 +5,7 @@ import "./demo.css";
 
 const itemsNormal = [
   {
+    id: 1,
     name: "available",
     data: [
       {
@@ -22,6 +23,7 @@ const itemsNormal = [
     ]
   },
   {
+    id: 2,
     name: "assigned",
     data: [
       {
@@ -35,6 +37,7 @@ const itemsNormal = [
     ]
   },
   {
+    id: 3,
     name: "thirdBox",
     data: [
       {
@@ -56,7 +59,8 @@ ReactDOM.render(
       height={"100%"} 
       data={itemsNormal} 
       multiple 
-      draggerImg 
+      draggerImg
+      title
     />
   </React.StrictMode>,
   document.getElementById("root")

@@ -86,6 +86,7 @@ render(<App />, document.body);
 | height | number/string | `0` | The height for dragger |
 | multiple | boolean | false | The items can select and drag in multiple |
 | draggerImg | boolean | false | set an image in left side of drag item,  (users to know its draggable) |
+| title | | boolean | false | to show title in dragging box |
 
 ### Limitations
 - The multiple dragging item will not show when dragging (in the hold cursor mode)

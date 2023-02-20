@@ -8,19 +8,23 @@ type ListProps = {
   children?: React.ReactNode;
   title: string;
   onDragEnd: (data: any) => void;
-  name: string;
+  id: string;
 };
 
-const List = ({ children, name }: ListProps) => {
+const List = ({ children, id, title }: ListProps) => {
   return (
     <div className="h-100 w-100">
+      
       <div className="h-100">
-        <Droppable droppableId={name}>
+        <Droppable droppableId={id}>
           {(provided: DroppableProvided) => (
             <div ref={provided.innerRef} className="h-100">
-              <div className="h-100 drag_box">
-                {children}
-                {provided.placeholder}
+              <div className="h-100  drag_box_container">
+                {title ? <div className="dragger_title">{title}</div> : ""}
+                <div className={`drag_box ${title ? "drag_box_on_drag_tittle" : ""}`}>
+                  {children}
+                  {provided.placeholder}
+                </div> 
               </div>
             </div>
           )}
