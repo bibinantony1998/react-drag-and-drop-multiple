@@ -13,7 +13,7 @@
     "React horizontal and vertical drag and drop",
     "Javascript drag and drop",
     "React drag and drop multiple",
-    "React drag", 
+    "React drag",
     "React dnd",
     "React multiple dnd",
     "Dnd",
@@ -29,7 +29,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bibinantony1998/react-drag-and-drop"
+    "url": "https://github.com/bibinantony1998/react-drag-and-drop-multiple"
   },
   "dependencies": {
     "@types/jest": "^27.0.1",
@@ -67,5 +67,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "web-vitals": "^3.1.1"
   }
 }
