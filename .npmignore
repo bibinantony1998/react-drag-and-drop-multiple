@@ -1,6 +1,0 @@
-src
-tests
-.babelrc
-.scrutinizer.yml
-.travis.yml
-jest.config.js

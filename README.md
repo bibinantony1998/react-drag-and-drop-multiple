@@ -3,7 +3,7 @@ A multiple column draggable drag and drop
 
 Inspired from  React beautiful dnd
 
-Just send a JSON in the given structure to create draggable and droppable column, the column will create as the depth of the JSON
+Just send a JSON in the given structure to create draggable and droppable column, the column will create as the length of the JSON that pass in props
 
 Demo: https://codesandbox.io/s/boring-benz-8epbde
 
@@ -19,47 +19,50 @@ import React from "react";
 import { render } from "react-dom";
 import ReactMDND from "react-drag-and-drop-multiple-dynamic-column";
 
-const dragData = [
+const data = [
   {
-    name: "available",
+    id: "1",
+    name: "Drag drop 1",
     data: [
       {
-        id: 1,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a4477"
+        id: "1",
+        value: "Test 1"
       },
       {
-        id: 2,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a448"
+        id: "2",
+        value: "Test 2"
       },
       {
-        id: 3,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a449"
+        id: "3",
+        value: "Test 3"
       },
     ]
   },
   {
-    name: "assigned",
+    id: "2",
+    name: "Drag drop 2",
     data: [
       {
-        id: 5,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a450"
+        id: "5",
+        value: "Test 4"
       },
       {
-        id: 6,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a451"
+        id: "6",
+        value: "Test 5"
       },
     ]
   },
   {
-    name: "thirdBox",
+    id: "3",
+    name: "Drag drop 3",
     data: [
       {
-        id: 7,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a452"
+        id: "7",
+        value: "Test 6"
       },
       {
-        id: 8,
-        uuid: "52f9df20-9393-4c4d-b72c-7bfa4398a453"
+        id: "8",
+        value: "Test 7"
       },
     ]
   },
@@ -67,11 +70,12 @@ const dragData = [
 
 const App = () => (
     <App 
+      onChange={(data) => console.log(data)}
       width="100%" 
       height={"100%"} 
-      data={dragData} 
+      data={data} 
       multiple 
-      draggerImg 
+      draggerImg
       title
     />
 );
@@ -87,7 +91,10 @@ render(<App />, document.body);
 | height | number/string | `0` | The height for dragger |
 | multiple | boolean | false | The items can select and drag in multiple |
 | draggerImg | boolean | false | set an image in left side of drag item,  (users to know its draggable) |
-| title | | boolean | false | to show title in dragging box |
+| title | boolean | false | to show title in dragging box |
+| onChange | function |  | This Function will return the updated JSON |
+
+[Bibin Antony](https://github.com/bibinantony1998)
 
 ### Limitations
 - The multiple dragging item will not show when dragging (in the hold cursor mode)

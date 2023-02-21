@@ -6,6 +6,7 @@ export interface MainContainerProps {
     draggerImg?: boolean;
     title?: boolean;
     centerTitle?: boolean;
+    onChange(data: any[]): void
 }
 export interface CardProps {
     children?: React.ReactNode;

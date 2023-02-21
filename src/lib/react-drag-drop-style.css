@@ -37,7 +37,7 @@
 }
 .drag_item_drag_img::before {
     content: "";
-    background-image: url("./components/images/1476321-200.png");
+    background-image: url("./components/images/drager.png");
     position: absolute;
     left: 0;
     top: 0;

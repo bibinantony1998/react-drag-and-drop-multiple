@@ -1,12 +1,37 @@
 {
   "name": "react-drag-and-drop-multiple-dynamic-column",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Simple react component to drag and drop to multiple box",
+  "keywords": [
+    "React drag and drop",
+    "Drag and drop",
+    "Multiple drag and drop",
+    "Multi drag drop",
+    "React multiple drag drop",
+    "React multiple box drag drop",
+    "React horizontal and vertical drag and drop",
+    "Javascript drag and drop",
+    "React drag and drop multiple",
+    "React drag", 
+    "React dnd",
+    "React multiple dnd",
+    "Dnd",
+    "Kanban board",
+    "Kanban board dnd"
+  ],
+  "author": "Bibin antony",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bibinantony1998/react-drag-and-drop"
+  },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
@@ -16,8 +41,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "typescript": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +55,7 @@
       "react-app/jest"
     ]
   },
+  "license": "ISC",
   "browserslist": {
     "production": [
       ">0.2%",
