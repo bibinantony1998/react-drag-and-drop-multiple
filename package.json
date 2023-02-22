@@ -1,7 +1,6 @@
 {
   "name": "react-drag-and-drop-multiple-dynamic-column",
   "version": "1.0.0",
-  "private": true,
   "description": "Simple react component to drag and drop to multiple box",
   "keywords": [
     "React drag and drop",
@@ -32,6 +31,10 @@
     "type": "git",
     "url": "https://github.com/bibinantony1998/react-drag-and-drop-multiple"
   },
+  "dependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
+    "react-beautiful-dnd": "^13.1.0"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -46,10 +49,8 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.59",
     "@types/react": "^18.0.20",
-    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.6",
     "postcss": "^8.4.16",
-    "react-beautiful-dnd": "^13.1.0",
     "react-scripts": "5.0.1",
     "rollup": "2.79.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
