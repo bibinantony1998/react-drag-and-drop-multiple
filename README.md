@@ -5,7 +5,8 @@ Inspired from  React beautiful dnd
 
 Just send a JSON in the given structure to create draggable and droppable column, the column will create as the length of the JSON that pass in props
 
-Demo: https://codesandbox.io/s/boring-benz-8epbde
+## demo
+[Live demo](https://bibinantony1998.github.io/react-drag-and-drop-multiple/)
 
 ### Usage: 
 

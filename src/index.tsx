@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./lib/App";
+import App from "./lib";
 import "./demo.css";
 
 const data = [
