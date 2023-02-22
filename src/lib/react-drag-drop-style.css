@@ -5,13 +5,13 @@
     border-radius: 0.375rem;
 }
 .drag_box {
-    padding: 1.25rem;
+    padding: 10px;
     overflow: auto;
     height: 100%;
 }
 .dragger_title {
     border-bottom: 1px solid black;
-    padding: 1rem 1.25rem;
+    padding: 10px;
     user-select: none;
 }
 .drag_box_on_drag_tittle {
@@ -20,15 +20,11 @@
 }
 .drag_item {
     position: relative;
-    
     border: 1px solid #dddddd;
     border-radius: 4px;
     overflow: hidden;
     user-select: none;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding: 10px;
     margin-bottom: 10px;
     background-color: white;
 }
