@@ -1,6 +1,6 @@
 {
   "name": "react-drag-and-drop-multiple-dynamic-column",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple react component to drag and drop to multiple box",
   "keywords": [
     "React drag and drop",

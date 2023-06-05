@@ -9,11 +9,15 @@ const Card: FunctionComponent<CardProps> = (props) => {
 
   return (
     <div className="cursor-pointer drag_item_content" onClick={itemClicked}>
-      <main className={`drag_item ${props.draggerImg ? "drag_item_drag_img" : ""}`}>
-        <span className="">
-          <div>{props.data.value}</div>
-        </span>
-      </main>
+      
+          {props.children ? props.children :  
+            <main className={`drag_item ${props.draggerImg ? "drag_item_drag_img" : ""}`}>
+              <span className="">
+                  <div>{props.data.value}</div>
+              </span>
+            </main>
+          }
+      
     </div>
   );
 };

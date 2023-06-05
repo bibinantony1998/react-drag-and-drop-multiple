@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./lib";
+import DragDropComponent from "./lib";
 import "./demo.css";
 
 const data = [
@@ -54,7 +54,7 @@ const data = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App 
+    <DragDropComponent 
       onChange={(data) => console.log(data)}
       width="100%" 
       height={"100%"} 
@@ -62,7 +62,7 @@ ReactDOM.render(
       multiple 
       draggerImg
       title
-    />
+  >Try your custom drag item html component here</DragDropComponent>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -5,6 +5,8 @@ Inspired from  React beautiful dnd
 
 Just send a JSON in the given structure to create draggable and droppable column, the column will create as the length of the JSON that pass in props
 
+Now you can add your custom drag item component in drag drop component as children (now, its only one component accepted on single parent, future version will add whole drag drop container and drag item as HOC)
+
 ## demo
 [Live demo](https://bibinantony1998.github.io/react-drag-and-drop-multiple/)
 
@@ -70,7 +72,7 @@ const data = [
 ];
 
 const App = () => (
-    <App 
+    <DragDropComponent 
       onChange={(data) => console.log(data)}
       width="100%" 
       height={"100%"} 
@@ -78,7 +80,7 @@ const App = () => (
       multiple 
       draggerImg
       title
-    />
+  >Try your custom drag item html component here</DragDropComponent>
 );
 
 render(<App />, document.body);

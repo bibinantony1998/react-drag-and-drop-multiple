@@ -131,7 +131,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
                                 checked={selectItems.selectedArray === el.id && selectItems.items.findIndex((e) => e.id === item.id) !== -1} 
                                 onChange={(event) => selectFromList(event, item, index, el.id)} 
                               />
-                              <Card draggerImg={props.draggerImg} data={item} inputId={`${el.id}_${index}`} />
+                              <Card draggerImg={props.draggerImg} data={item} inputId={`${el.id}_${index}`}>{props.children ? props.children : null}</Card>
                             </div>
                           </div>
                         )}
