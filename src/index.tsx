@@ -62,7 +62,7 @@ ReactDOM.render(
       multiple 
       draggerImg
       title
-  >Try your custom drag item html component here</DragDropComponent>
+    />
   </React.StrictMode>,
   document.getElementById("root")
 );
