@@ -22,16 +22,11 @@ export default {
     resolve(),
     commonjs(),
     typescript({
+      tsconfig: "./tsconfig.build.json",
       useTsconfigDeclarationDir: true,
-      tsconfigOverride: {
-        compilerOptions: {
-          moduleResolution: "node",
-        },
-      },
     }),
     postcss(),
     json(),
   ],
   external: ["react", "react-dom", "react/jsx-runtime"],
-  exclude: ["node_modules"],
 };
