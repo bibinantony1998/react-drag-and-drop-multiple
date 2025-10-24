@@ -2,11 +2,11 @@
 
 A multiple column draggable drag and drop component built with **native HTML5 drag-and-drop API**
 
-**✨ New in v2.0:** Now uses native HTML5 drag-and-drop instead of react-beautiful-dnd - fully compatible with React 19 and StrictMode!
+**✨ New in v2.0:** Now uses native HTML5 drag-and-drop instead of react-beautiful-dnd - fully compatible with React 18/19 and StrictMode!
 
 Just send a JSON in the given structure to create draggable and droppable column, the column will create as the length of the JSON that pass in props
 
-Now you can add your custom drag item component in drag drop component as children (now, its only one component accepted on single parent, future version will add whole drag drop container and drag item as HOC)
+Create a custom component as dragable items and provide it to the HOC wrapper in props
 
 ## demo
 
@@ -196,6 +196,7 @@ const renderTaskCard = (item, index, listId) => (
 
 📚 **Documentation:**
 
+- [INSTALL.md](./INSTALL.md) - Instalation guide
 - [CUSTOM-RENDERING.md](./CUSTOM-RENDERING.md) - Complete API and examples
 - [HOC-PATTERN.md](./HOC-PATTERN.md) - Architecture and patterns
 - [REACT-COMPATIBILITY.md](./REACT-COMPATIBILITY.md) - React 18 & 19 compatibility guide
@@ -221,5 +222,5 @@ const renderTaskCard = (item, index, listId) => (
 
 ### Limitations
 
-- The multiple dragging item will not show when dragging (in the hold cursor mode)
+- Drag column styles are not in props, Yet yopu can override the css to change looks
 ```
