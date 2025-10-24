@@ -32,7 +32,7 @@
   "homepage": "https://bibinantony1998.github.io/react-drag-and-drop-multiple",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bibinantony1998/react-drag-and-drop-multiple"
+    "url": "git+https://github.com/bibinantony1998/react-drag-and-drop-multiple.git"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
