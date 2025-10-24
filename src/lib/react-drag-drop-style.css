@@ -55,6 +55,49 @@
 .drag_item_container input:checked ~ .drag_item_content .drag_item {
     border-color: blue; 
 }
+
+/* Native drag-and-drop styles */
+.drag_item_wrapper {
+    cursor: move;
+    position: relative;
+}
+
+/* Hover animation - always active, even when selected */
+.drag_item_wrapper:hover {
+    z-index: 10;
+}
+
+.drag_item_wrapper.dragging {
+    opacity: 0.5;
+}
+
+/* Visual feedback when dragging multiple items */
+.drag_item_wrapper.multi-dragging {
+    opacity: 0.6;
+}
+
+/* Show all selected items with visual feedback */
+.drag_item_container input:checked ~ .drag_item_content {
+    position: relative;
+}
+
+.drag_item_container input:checked ~ .drag_item_content > div {
+    box-shadow: 0px 0px 0px 1px #667eea;
+}
+
+/* Keep hover effect on selected items */
+.drag_item_container input:checked ~ .drag_item_content:hover::before {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.drag_item_wrapper.drag-over {
+    border-top: 3px solid #4CAF50;
+    padding-top: 5px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
 .h-100 {
     height: 100%;
 }

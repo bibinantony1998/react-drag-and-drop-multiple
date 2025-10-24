@@ -3,26 +3,35 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
-import json from '@rollup/plugin-json';
-const packageJson = require("./package.json");
+import json from "@rollup/plugin-json";
+import { readFileSync } from "fs";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+const packageJson = JSON.parse(readFileSync("./package.json", "utf-8"));
+
 export default {
   input: "src/lib/index.tsx",
   output: [
     {
       file: packageJson.main,
-      sourcemap: true
-    }
+      format: "esm",
+      sourcemap: true,
+    },
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript({
+      useTsconfigDeclarationDir: true,
+      tsconfigOverride: {
+        compilerOptions: {
+          moduleResolution: "node",
+        },
+      },
+    }),
     postcss(),
-    json()
+    json(),
   ],
-  external: ["react", "react-dom"],
-  exclude:["node_modules"]
+  external: ["react", "react-dom", "react/jsx-runtime"],
+  exclude: ["node_modules"],
 };
