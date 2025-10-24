@@ -1,6 +1,6 @@
 {
   "name": "react-drag-and-drop-multiple-dynamic-column",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React 18/19 drag and drop component with native HTML5 APIs - multiple columns support",
   "keywords": [
     "React drag and drop",
