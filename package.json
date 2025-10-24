@@ -64,8 +64,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "rm -rf build && rollup -c",
-    "build:demo": "vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "prepublishOnly": "npm run build"
