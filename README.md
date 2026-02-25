@@ -1,4 +1,4 @@
-## React drag and drop multiple dynamic column
+## React drag and drop multiple dynamic column | A React component by **Bibin Antony**
 
 A multiple column draggable drag and drop component built with **native HTML5 drag-and-drop API**
 
