@@ -1,76 +1,90 @@
-import { jsx as l, jsxs as E } from "react/jsx-runtime";
-import { useState as y } from "react";
-const B = (a) => /* @__PURE__ */ l("div", { className: "cursor-pointer drag_item_content", onClick: () => {
-  var h;
-  (h = document.getElementById(a.inputId)) == null || h.click();
-}, children: a.children ? a.children : /* @__PURE__ */ l("main", { className: `drag_item ${a.draggerImg ? "drag_item_drag_img" : ""}`, children: /* @__PURE__ */ l("span", { className: "", children: /* @__PURE__ */ l("div", { children: a.data.value }) }) }) }), M = ({
-  children: a,
-  id: f,
-  title: h,
-  centerTitle: u,
-  onDrop: b,
-  onDragOver: g
-}) => /* @__PURE__ */ l("div", { className: "h-100 w-100", children: /* @__PURE__ */ l("div", { className: "h-100", children: /* @__PURE__ */ l("div", { className: "h-100", onDrop: b, onDragOver: g, children: /* @__PURE__ */ E("div", { className: "h-100 drag_box_container", children: [
-  h ? /* @__PURE__ */ l(
-    "div",
-    {
-      className: `dragger_title ${u ? "center_title" : ""}`,
-      children: h
-    }
-  ) : "",
-  /* @__PURE__ */ l(
-    "div",
-    {
-      className: `drag_box ${h ? "drag_box_on_drag_tittle" : ""}`,
-      children: a
-    }
-  )
-] }) }) }) }), J = (a) => {
-  const [f, h] = y(a.data), [u, b] = y({ items: [], selectedArray: "" }), [g, v] = y(null), _ = (t, i) => {
-    const r = Array.from(t), [e] = r.splice(i, 1);
-    return [e, r];
-  }, k = (t, i, r, e) => {
-    let m = { ...u };
-    u.selectedArray !== e && (b({ items: [], selectedArray: e }), m = { items: [], selectedArray: e });
-    let d = [];
+import { jsx as u, jsxs as L } from "react/jsx-runtime";
+import { useState as _ } from "react";
+const z = (n) => /* @__PURE__ */ u("div", { className: "cursor-pointer drag_item_content", onClick: () => {
+  var f;
+  (f = document.getElementById(n.inputId)) == null || f.click();
+}, children: n.children ? n.children : /* @__PURE__ */ u("main", { className: `drag_item ${n.draggerImg ? "drag_item_drag_img" : ""}`, children: /* @__PURE__ */ u("span", { className: "", children: /* @__PURE__ */ u("div", { children: n.data.value }) }) }) }), G = ({
+  children: n,
+  id: w,
+  title: f,
+  centerTitle: g,
+  onDrop: v,
+  onDragOver: b,
+  draggable: x,
+  onDragStart: I,
+  onDragEnd: D,
+  isDragged: N,
+  isDragOver: A
+}) => /* @__PURE__ */ u("div", { className: `h-100 w-100 ${N ? "dragging-board" : ""} ${A ? "board-drag-over" : ""}`, children: /* @__PURE__ */ u("div", { className: "h-100", children: /* @__PURE__ */ u("div", { className: "h-100", onDrop: v, onDragOver: b, children: /* @__PURE__ */ L(
+  "div",
+  {
+    className: "h-100 drag_box_container",
+    draggable: x,
+    onDragStart: I,
+    onDragEnd: D,
+    children: [
+      f ? /* @__PURE__ */ u(
+        "div",
+        {
+          className: `dragger_title ${g ? "center_title" : ""}`,
+          children: f
+        }
+      ) : "",
+      /* @__PURE__ */ u(
+        "div",
+        {
+          className: `drag_box ${f ? "drag_box_on_drag_tittle" : ""}`,
+          children: n
+        }
+      )
+    ]
+  }
+) }) }) }), K = (n) => {
+  const [w, f] = _(n.data), [g, v] = _({ items: [], selectedArray: "" }), [b, x] = _(null), [I, D] = _(null), [N, A] = _(null), k = (t, e) => {
+    const i = Array.from(t), [r] = i.splice(e, 1);
+    return [r, i];
+  }, $ = (t, e, i, r) => {
+    let o = { ...g };
+    g.selectedArray !== r && (v({ items: [], selectedArray: r }), o = { items: [], selectedArray: r });
+    let a = [];
     if (t.target.checked) {
-      let n = [];
-      n.push({ ...i, sourceIndex: r }), d = [...m.items, ...n];
+      let s = [];
+      s.push({ ...e, sourceIndex: i }), a = [...o.items, ...s];
     } else {
-      let n = [...m.items];
-      var s = n.findIndex((o) => o.id === i.id);
-      n.splice(s, 1), d = [...n];
+      let s = [...o.items];
+      var l = s.findIndex((d) => d.id === e.id);
+      s.splice(l, 1), a = [...s];
     }
-    d.sort((n, o) => n.sourceIndex - o.sourceIndex), b({ items: d, selectedArray: e });
-  }, N = (t, i, r) => {
-    const e = Array.from(t);
-    return e.splice(i, 0, r), e;
-  }, C = (t, i, r, e) => {
-    t.dataTransfer.effectAllowed = "move", t.dataTransfer.setData("text/html", t.currentTarget.innerHTML), t.dataTransfer.setData(
+    a.sort((s, d) => s.sourceIndex - d.sourceIndex), v({ items: a, selectedArray: r });
+  }, T = (t, e, i) => {
+    const r = Array.from(t);
+    return r.splice(e, 0, i), r;
+  }, B = (t, e, i, r) => {
+    t.stopPropagation(), t.dataTransfer.effectAllowed = "move", t.dataTransfer.setData("text/html", t.currentTarget.innerHTML), t.dataTransfer.setData(
       "application/json",
       JSON.stringify({
-        item: i,
-        sourceListId: r,
-        sourceIndex: e
+        item: e,
+        sourceListId: i,
+        sourceIndex: r
       })
     );
-    const m = u.items.findIndex((d) => d.sourceIndex === e) !== -1 && u.selectedArray === r;
-    if (m && u.items.length > 1) {
-      const d = S(u.items.length);
-      document.body.appendChild(d), t.dataTransfer.setDragImage(d, 40, 40), setTimeout(() => {
-        document.body.removeChild(d);
+    const o = g.items.findIndex((a) => a.sourceIndex === r) !== -1 && g.selectedArray === i;
+    if (o && g.items.length > 1) {
+      const a = j(g.items.length);
+      document.body.appendChild(a), t.dataTransfer.setDragImage(a, 40, 40), setTimeout(() => {
+        document.body.removeChild(a);
       }, 0);
     }
-    t.currentTarget.classList.add("dragging"), m && u.items.length > 1 && u.items.forEach((d) => {
-      var n;
-      const s = document.getElementById(
-        `${r}_${d.sourceIndex}`
+    t.currentTarget.classList.add("dragging"), o && g.items.length > 1 && g.items.forEach((a) => {
+      var s;
+      const l = document.getElementById(
+        `${i}_${a.sourceIndex}`
       );
-      s && ((n = s.closest(".drag_item_wrapper")) == null || n.classList.add("multi-dragging"));
+      l && ((s = l.closest(".drag_item_wrapper")) == null || s.classList.add("multi-dragging"));
     });
-  }, S = (t) => {
-    const i = document.createElement("div");
-    i.style.cssText = `
+  }, j = (t) => {
+    const e = document.createElement("div");
+    e.style.cssText = `
       position: absolute;
       top: -1000px;
       left: -1000px;
@@ -81,150 +95,184 @@ const B = (a) => /* @__PURE__ */ l("div", { className: "cursor-pointer drag_item
       justify-content: center;
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
     `;
-    const r = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    r.setAttribute("width", "70"), r.setAttribute("height", "70"), r.setAttribute("viewBox", "0 0 70 70"), r.style.cssText = "pointer-events: none;";
-    const e = document.createElementNS(
+    const i = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    i.setAttribute("width", "70"), i.setAttribute("height", "70"), i.setAttribute("viewBox", "0 0 70 70"), i.style.cssText = "pointer-events: none;";
+    const r = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"
     );
-    e.setAttribute("x", "10"), e.setAttribute("y", "10"), e.setAttribute("width", "50"), e.setAttribute("height", "50"), e.setAttribute("rx", "8"), e.setAttribute("fill", "white"), e.setAttribute("stroke", "#e0e0e0"), e.setAttribute("stroke-width", "2"), r.appendChild(e);
-    const m = document.createElementNS(
+    r.setAttribute("x", "10"), r.setAttribute("y", "10"), r.setAttribute("width", "50"), r.setAttribute("height", "50"), r.setAttribute("rx", "8"), r.setAttribute("fill", "white"), r.setAttribute("stroke", "#e0e0e0"), r.setAttribute("stroke-width", "2"), i.appendChild(r);
+    const o = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "g"
-    ), d = document.createElementNS(
+    ), a = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"
     );
-    d.setAttribute("x", "28"), d.setAttribute("y", "20"), d.setAttribute("width", "22"), d.setAttribute("height", "28"), d.setAttribute("rx", "2"), d.setAttribute("fill", "#f5f5f5"), d.setAttribute("stroke", "#ccc"), d.setAttribute("stroke-width", "1");
+    a.setAttribute("x", "28"), a.setAttribute("y", "20"), a.setAttribute("width", "22"), a.setAttribute("height", "28"), a.setAttribute("rx", "2"), a.setAttribute("fill", "#f5f5f5"), a.setAttribute("stroke", "#ccc"), a.setAttribute("stroke-width", "1");
+    const l = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "rect"
+    );
+    l.setAttribute("x", "26"), l.setAttribute("y", "23"), l.setAttribute("width", "22"), l.setAttribute("height", "28"), l.setAttribute("rx", "2"), l.setAttribute("fill", "#fafafa"), l.setAttribute("stroke", "#bbb"), l.setAttribute("stroke-width", "1");
     const s = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"
     );
-    s.setAttribute("x", "26"), s.setAttribute("y", "23"), s.setAttribute("width", "22"), s.setAttribute("height", "28"), s.setAttribute("rx", "2"), s.setAttribute("fill", "#fafafa"), s.setAttribute("stroke", "#bbb"), s.setAttribute("stroke-width", "1");
-    const n = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "rect"
-    );
-    n.setAttribute("x", "24"), n.setAttribute("y", "26"), n.setAttribute("width", "22"), n.setAttribute("height", "28"), n.setAttribute("rx", "2"), n.setAttribute("fill", "white"), n.setAttribute("stroke", "#999"), n.setAttribute("stroke-width", "1.5"), m.appendChild(d), m.appendChild(s), m.appendChild(n), r.appendChild(m);
-    const o = document.createElementNS(
+    s.setAttribute("x", "24"), s.setAttribute("y", "26"), s.setAttribute("width", "22"), s.setAttribute("height", "28"), s.setAttribute("rx", "2"), s.setAttribute("fill", "white"), s.setAttribute("stroke", "#999"), s.setAttribute("stroke-width", "1.5"), o.appendChild(a), o.appendChild(l), o.appendChild(s), i.appendChild(o);
+    const d = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
     );
-    o.setAttribute("cx", "52"), o.setAttribute("cy", "18"), o.setAttribute("r", "12"), o.setAttribute("fill", "#666"), o.setAttribute("stroke", "white"), o.setAttribute("stroke-width", "2");
+    d.setAttribute("cx", "52"), d.setAttribute("cy", "18"), d.setAttribute("r", "12"), d.setAttribute("fill", "#666"), d.setAttribute("stroke", "white"), d.setAttribute("stroke-width", "2");
     const c = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    return c.setAttribute("x", "52"), c.setAttribute("y", "23"), c.setAttribute("text-anchor", "middle"), c.setAttribute("fill", "white"), c.setAttribute("font-size", "13"), c.setAttribute("font-weight", "700"), c.setAttribute("font-family", "system-ui, -apple-system, sans-serif"), c.textContent = t.toString(), r.appendChild(o), r.appendChild(c), i.appendChild(r), i;
-  }, L = (t) => {
-    t.currentTarget.classList.remove("dragging"), document.querySelectorAll(".multi-dragging").forEach((i) => {
-      i.classList.remove("multi-dragging");
-    }), v(null);
-  }, T = (t, i, r) => {
-    t.preventDefault(), t.dataTransfer.dropEffect = "move", v({ listId: i, index: r });
-  }, D = (t, i, r) => {
+    return c.setAttribute("x", "52"), c.setAttribute("y", "23"), c.setAttribute("text-anchor", "middle"), c.setAttribute("fill", "white"), c.setAttribute("font-size", "13"), c.setAttribute("font-weight", "700"), c.setAttribute("font-family", "system-ui, -apple-system, sans-serif"), c.textContent = t.toString(), i.appendChild(d), i.appendChild(c), e.appendChild(i), e;
+  }, O = (t) => {
+    t.currentTarget.classList.remove("dragging"), document.querySelectorAll(".multi-dragging").forEach((e) => {
+      e.classList.remove("multi-dragging");
+    }), x(null);
+  }, J = (t, e, i) => {
+    t.preventDefault(), t.dataTransfer.dropEffect = "move", x({ listId: e, index: i });
+  }, S = (t, e, i) => {
     t.preventDefault(), t.stopPropagation();
-    const e = t.dataTransfer.getData("application/json");
-    if (!e) return;
-    const { sourceListId: m, sourceIndex: d } = JSON.parse(e), s = [...f];
-    if (u.items.findIndex((n) => n.sourceIndex === d) !== -1 && u.selectedArray === m)
-      u.items.forEach((n, o) => {
-        let c = s.findIndex((w) => w.id === m);
-        if (c !== -1) {
-          const w = s[c].data;
-          let A = n.sourceIndex - o;
-          const [p, j] = _(
-            w,
-            A
+    const r = t.dataTransfer.getData("application/json");
+    if (!r) return;
+    const o = JSON.parse(r);
+    if (o.type === "board") {
+      const d = o.sourceListId;
+      if (d === e) return;
+      const c = [...w], h = c.findIndex((m) => m.id === d), p = c.findIndex((m) => m.id === e);
+      if (h !== -1 && p !== -1) {
+        const [m] = c.splice(h, 1);
+        c.splice(p, 0, m), f(c), n.onChange(c);
+      }
+      A(null), D(null);
+      return;
+    }
+    const { sourceListId: a, sourceIndex: l } = o, s = [...w];
+    if (g.items.findIndex((d) => d.sourceIndex === l) !== -1 && g.selectedArray === a)
+      g.items.forEach((d, c) => {
+        let h = s.findIndex((p) => p.id === a);
+        if (h !== -1) {
+          const p = s[h].data;
+          let m = d.sourceIndex - c;
+          const [y, q] = k(
+            p,
+            m
           );
-          s[c].data = j;
-          let x = s.findIndex(
-            (I) => I.id === i
+          s[h].data = q;
+          let E = s.findIndex(
+            (C) => C.id === e
           );
-          if (x !== -1) {
-            const I = s[x].data;
-            s[x].data = N(
-              I,
-              r + o,
-              p
+          if (E !== -1) {
+            const C = s[E].data;
+            s[E].data = T(
+              C,
+              i + c,
+              y
             );
           }
         }
-      }), b({ items: [], selectedArray: "" });
+      }), v({ items: [], selectedArray: "" });
     else {
-      let n = s.findIndex((c) => c.id === m);
-      const o = s[n].data;
-      if (n !== -1) {
-        const [c, w] = _(
-          o,
-          d
+      let d = s.findIndex((h) => h.id === a);
+      const c = s[d].data;
+      if (d !== -1) {
+        const [h, p] = k(
+          c,
+          l
         );
-        s[n].data = w;
-        let A = s.findIndex(
-          (p) => p.id === i
+        s[d].data = p;
+        let m = s.findIndex(
+          (y) => y.id === e
         );
-        if (A !== -1) {
-          const p = s[A].data;
-          s[A].data = N(
-            p,
-            r,
-            c
+        if (m !== -1) {
+          const y = s[m].data;
+          s[m].data = T(
+            y,
+            i,
+            h
           );
         }
       }
     }
-    h(s), v(null), a.onChange(s);
-  }, $ = (t, i) => {
-    const r = f.find((e) => e.id === i);
-    r && D(t, i, r.data.length);
+    f(s), x(null), n.onChange(s);
+  }, M = (t, e) => {
+    A(null);
+    const i = t.dataTransfer.getData("application/json");
+    if (i && JSON.parse(i).type === "board") {
+      S(t, e, 0);
+      return;
+    }
+    const r = w.find((o) => o.id === e);
+    r && S(t, e, r.data.length);
+  }, P = (t, e) => {
+    if (!n.boardDraggable) {
+      t.preventDefault();
+      return;
+    }
+    t.dataTransfer.effectAllowed = "move", t.dataTransfer.setData(
+      "application/json",
+      JSON.stringify({ type: "board", sourceListId: e })
+    ), D(e);
+  }, F = (t) => {
+    D(null), A(null);
   };
-  return /* @__PURE__ */ l("div", { style: { width: a.width, height: a.height }, children: /* @__PURE__ */ l("div", { className: "d-flex h-100 p-2", children: f.map((t) => /* @__PURE__ */ l(
-    M,
+  return /* @__PURE__ */ u("div", { style: { width: n.width, height: n.height }, children: /* @__PURE__ */ u("div", { className: "d-flex h-100 p-2", children: w.map((t) => /* @__PURE__ */ u(
+    G,
     {
-      centerTitle: a.centerTitle,
-      title: a.title ? t.name : "",
+      centerTitle: n.centerTitle,
+      title: n.title ? t.name : "",
       id: t.id,
-      onDrop: (i) => $(i, t.id),
-      onDragOver: (i) => {
-        i.preventDefault(), i.dataTransfer.dropEffect = "move";
+      draggable: n.boardDraggable,
+      onDragStart: (e) => P(e, t.id),
+      onDragEnd: F,
+      isDragged: I === t.id,
+      isDragOver: N === t.id,
+      onDrop: (e) => M(e, t.id),
+      onDragOver: (e) => {
+        e.preventDefault(), e.stopPropagation(), e.dataTransfer.dropEffect = "move", I && I !== t.id && A(t.id);
       },
-      children: t.data.map((i, r) => /* @__PURE__ */ l(
+      children: t.data.map((e, i) => /* @__PURE__ */ u(
         "div",
         {
           draggable: !0,
-          onDragStart: (e) => C(e, i, t.id, r),
-          onDragEnd: L,
-          onDragOver: (e) => T(e, t.id, r),
-          onDrop: (e) => D(e, t.id, r),
-          className: `drag_item_wrapper ${(g == null ? void 0 : g.listId) === t.id && (g == null ? void 0 : g.index) === r ? "drag-over" : ""}`,
-          children: /* @__PURE__ */ E("div", { className: "drag_item_container", children: [
-            /* @__PURE__ */ l(
+          onDragStart: (r) => B(r, e, t.id, i),
+          onDragEnd: O,
+          onDragOver: (r) => J(r, t.id, i),
+          onDrop: (r) => S(r, t.id, i),
+          className: `drag_item_wrapper ${(b == null ? void 0 : b.listId) === t.id && (b == null ? void 0 : b.index) === i ? "drag-over" : ""}`,
+          children: /* @__PURE__ */ L("div", { className: "drag_item_container", children: [
+            /* @__PURE__ */ u(
               "input",
               {
-                disabled: !a.multiple,
-                id: `${t.id}_${r}`,
+                disabled: !n.multiple,
+                id: `${t.id}_${i}`,
                 type: "checkbox",
-                checked: u.selectedArray === t.id && u.items.findIndex((e) => e.id === i.id) !== -1,
-                onChange: (e) => k(e, i, r, t.id)
+                checked: g.selectedArray === t.id && g.items.findIndex((r) => r.id === e.id) !== -1,
+                onChange: (r) => $(r, e, i, t.id)
               }
             ),
-            /* @__PURE__ */ l(
+            /* @__PURE__ */ u(
               "div",
               {
                 className: "drag_item_content",
                 onClick: () => {
-                  var e;
-                  (e = document.getElementById(`${t.id}_${r}`)) == null || e.click();
+                  var r;
+                  (r = document.getElementById(`${t.id}_${i}`)) == null || r.click();
                 },
-                children: a.renderItem ? (
+                children: n.renderItem ? (
                   // Use custom render function if provided
-                  a.renderItem(i, r, t.id)
+                  n.renderItem(e, i, t.id)
                 ) : (
                   // Fallback to default Card component for backward compatibility
-                  /* @__PURE__ */ l(
-                    B,
+                  /* @__PURE__ */ u(
+                    z,
                     {
-                      draggerImg: a.draggerImg,
-                      data: i,
-                      inputId: `${t.id}_${r}`,
-                      children: a.children ? a.children : null
+                      draggerImg: n.draggerImg,
+                      data: e,
+                      inputId: `${t.id}_${i}`,
+                      children: n.children ? n.children : null
                     }
                   )
                 )
@@ -232,13 +280,13 @@ const B = (a) => /* @__PURE__ */ l("div", { className: "cursor-pointer drag_item
             )
           ] })
         },
-        i.id
+        e.id
       ))
     },
     `drop_box_${t.id}`
   )) }) });
 };
 export {
-  J as default
+  K as default
 };
 //# sourceMappingURL=index.js.map

@@ -162,6 +162,7 @@ root.render(
       multiple
       title
       centerTitle
+      boardDraggable={true}
       renderItem={renderTaskItem} // 🎉 Custom render function!
     />
   </StrictMode>

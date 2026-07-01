@@ -116,3 +116,14 @@
 .center_title {
     text-align: center;
 }
+
+/* Board drag styles */
+.dragging-board {
+    opacity: 0.4;
+}
+
+.board-drag-over {
+    border: 2px dashed #4CAF50;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+}

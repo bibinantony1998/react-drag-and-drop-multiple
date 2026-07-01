@@ -8,6 +8,7 @@ export interface MainContainerProps {
   draggerImg?: boolean;
   title?: boolean;
   centerTitle?: boolean;
+  boardDraggable?: boolean;
   onChange(data: any[]): void;
 
   /**

@@ -39,5 +39,6 @@ jobs:
         env:
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
-          github_token: ${{ secrets.DRAG_DROP_REPO_GTHUB_ACTION }}
+          github_token: ${{ secrets.DRAG_DROP_REPO_G
+          THUB_ACTION }}
           repository: ${{ github.repository }}

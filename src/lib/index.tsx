@@ -14,6 +14,8 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
     listId: string;
     index: number;
   } | null>(null);
+  const [draggedBoardId, setDraggedBoardId] = useState<string | null>(null);
+  const [boardDragOverId, setBoardDragOverId] = useState<string | null>(null);
 
   const removeFromList = (list: any, index: any) => {
     const result = Array.from(list);
@@ -62,6 +64,7 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
     listId: string,
     index: number
   ) => {
+    e.stopPropagation();
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/html", e.currentTarget.innerHTML);
     e.dataTransfer.setData(
@@ -257,7 +260,28 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
     const data = e.dataTransfer.getData("application/json");
     if (!data) return;
 
-    const { sourceListId, sourceIndex } = JSON.parse(data);
+    const parsedData = JSON.parse(data);
+
+    if (parsedData.type === "board") {
+      const sourceListId = parsedData.sourceListId;
+      if (sourceListId === destinationListId) return;
+      
+      const listCopy = [...items];
+      const sourceIndex = listCopy.findIndex((l) => l.id === sourceListId);
+      const destIndex = listCopy.findIndex((l) => l.id === destinationListId);
+      
+      if (sourceIndex !== -1 && destIndex !== -1) {
+        const [removedBoard] = listCopy.splice(sourceIndex, 1);
+        listCopy.splice(destIndex, 0, removedBoard);
+        setItems(listCopy);
+        props.onChange(listCopy);
+      }
+      setBoardDragOverId(null);
+      setDraggedBoardId(null);
+      return;
+    }
+
+    const { sourceListId, sourceIndex } = parsedData;
 
     const listCopy: any[] = [...items];
 
@@ -325,11 +349,39 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
   };
 
   const handleListDrop = (e: React.DragEvent, listId: string) => {
+    setBoardDragOverId(null);
+    const dataStr = e.dataTransfer.getData("application/json");
+    if (dataStr) {
+      const parsedData = JSON.parse(dataStr);
+      if (parsedData.type === "board") {
+        handleDrop(e, listId, 0); 
+        return;
+      }
+    }
+
     // Get the list and drop at the end
     const list = items.find((l) => l.id === listId);
     if (list) {
       handleDrop(e, listId, list.data.length);
     }
+  };
+
+  const handleBoardDragStart = (e: React.DragEvent, listId: string) => {
+    if (!props.boardDraggable) {
+      e.preventDefault();
+      return;
+    }
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData(
+      "application/json",
+      JSON.stringify({ type: "board", sourceListId: listId })
+    );
+    setDraggedBoardId(listId);
+  };
+
+  const handleBoardDragEnd = (e: React.DragEvent) => {
+    setDraggedBoardId(null);
+    setBoardDragOverId(null);
   };
 
   return (
@@ -342,10 +394,19 @@ const MainContainer: FunctionComponent<MainContainerProps> = (props) => {
               centerTitle={props.centerTitle}
               title={props.title ? el.name : ""}
               id={el.id}
+              draggable={props.boardDraggable}
+              onDragStart={(e) => handleBoardDragStart(e, el.id)}
+              onDragEnd={handleBoardDragEnd}
+              isDragged={draggedBoardId === el.id}
+              isDragOver={boardDragOverId === el.id}
               onDrop={(e) => handleListDrop(e, el.id)}
               onDragOver={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 e.dataTransfer.dropEffect = "move";
+                if (draggedBoardId && draggedBoardId !== el.id) {
+                  setBoardDragOverId(el.id);
+                }
               }}
             >
               {el.data.map((item: any, index: number) => (
