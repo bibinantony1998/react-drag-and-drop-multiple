@@ -1,4 +1,4 @@
-## react-dnd-kanban | A React component by **Bibin Antony**
+## react-drag-drop-kanban | A React component by **Bibin Antony**
 
 A highly customizable, multiple-column drag-and-drop board component built with the **native HTML5 drag-and-drop API**.
 
@@ -16,7 +16,7 @@ Just send a JSON array to create draggable and droppable columns. The component 
 ### Installation
 
 ```bash
-npm install react-dnd-kanban
+npm install react-drag-drop-kanban
 ```
 
 <sup>\* Requires `react` and `react-dom` version 18+ or 19+ as peer dependencies</sup>
@@ -59,7 +59,7 @@ npm install react-dnd-kanban
 ### Usage
 
 ```jsx
-import DragDropComponent from "react-dnd-kanban";
+import DragDropComponent from "react-drag-drop-kanban";
 
 const data = [
   {

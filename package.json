@@ -1,5 +1,5 @@
 {
-  "name": "react-dnd-kanban",
+  "name": "react-drag-drop-kanban",
   "version": "1.0.0",
   "description": "React 18/19 drag and drop component with native HTML5 APIs - multiple columns support",
   "keywords": [
